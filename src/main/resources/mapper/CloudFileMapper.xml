@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.aop.mapper.CloudFileMapper">
+
+    <!-- 基本结果集 -->
+    <resultMap id="CloudFileResultMap" type="com.example.aop.entity.CloudFile">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="file_name" property="fileName" jdbcType="VARCHAR"/>
+        <result column="file_type" property="fileType" jdbcType="VARCHAR"/>
+        <result column="operation_type" property="operationType" jdbcType="INTEGER"/>
+        <result column="operator" property="operator" jdbcType="VARCHAR"/>
+        <result column="upload_time" property="uploadTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="relevancy_id" property="relevancyId" jdbcType="VARCHAR"/>
+        <result column="object_key" property="objectKey" jdbcType="VARCHAR"/>
+        <result column="valid_time" property="validTime" jdbcType="TIMESTAMP"/>
+        <result column="file_category" property="fileCategory" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!-- 基本列 -->
+    <sql id="CloudFileColumns">
+        id, file_name, file_type, operation_type, operator, upload_time, remark, relevancy_id, object_key, valid_time, file_category
+    </sql>
+
+    <!-- 插入 -->
+    <insert id="insertCloudFile" parameterType="com.example.aop.entity.CloudFile">
+        INSERT INTO cloud_file
+        (<include refid="CloudFileColumns"/>)
+        VALUES
+        (
+        #{id}, #{fileName}, #{fileType}, #{operationType}, #{operator}, #{uploadTime}, #{remark},
+        #{relevancyId}, #{objectKey}, #{validTime}, #{fileCategory}
+        )
+    </insert>
+
+    <!-- 根据ID查询 -->
+    <select id="selectCloudFileById" parameterType="String" resultMap="CloudFileResultMap">
+        SELECT
+        <include refid="CloudFileColumns"/>
+        FROM cloud_file
+        WHERE id = #{id}
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAllCloudFiles" resultMap="CloudFileResultMap">
+        SELECT
+        <include refid="CloudFileColumns"/>
+        FROM cloud_file
+    </select>
+
+    <!-- 更新 -->
+    <update id="updateCloudFile" parameterType="com.example.aop.entity.CloudFile">
+        UPDATE cloud_file
+        SET
+            file_name = #{fileName},
+            file_type = #{fileType},
+            operation_type = #{operationType},
+            operator = #{operator},
+            upload_time = #{uploadTime},
+            remark = #{remark},
+            relevancy_id = #{relevancyId},
+            object_key = #{objectKey},
+            valid_time = #{validTime},
+            file_category = #{fileCategory}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id="deleteCloudFileById" parameterType="String">
+        DELETE FROM cloud_file WHERE id = #{id}
+    </delete>
+
+
+</mapper>

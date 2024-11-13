@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: aop
+  datasource:
+    url: jdbc:mysql://182.92.190.248:3306/bill
+    username: root
+    password: DMS1236321mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  # 实体类别名包扫描
+  type-aliases-package: com.example.aop.entity

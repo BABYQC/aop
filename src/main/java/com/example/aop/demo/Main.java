@@ -15,6 +15,8 @@ public class Main {
         proxyFactory.addAdvice(new AgentDecorator());
         proxyFactory.setTarget(agent);
 
+        proxyFactory.addAdvisors();
+
         Agent proxy = (Agent) proxyFactory.getProxy();
 
         agent.speak();
