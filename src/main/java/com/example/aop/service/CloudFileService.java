@@ -17,12 +17,12 @@ public class CloudFileService {
     @Resource
     private CloudFileMapper cloudFileMapper;
 
-    public int insertCloudFile(CloudFile cloudFile) {
-        return cloudFileMapper.insertCloudFile(cloudFile);
-    }
-
     public CloudFile getCloudFileById(String id) {
         return cloudFileMapper.selectCloudFileById(id);
+    }
+
+    public int insertCloudFile(CloudFile cloudFile) {
+        return cloudFileMapper.insertCloudFile(cloudFile);
     }
 
     public List<CloudFile> getAllCloudFiles() {
