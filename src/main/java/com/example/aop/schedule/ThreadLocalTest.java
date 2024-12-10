@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 public class ThreadLocalTest {
 
 
-    @Async
-    @Scheduled(fixedRate = 10 * 1000)
+//    @Async
+//    @Scheduled(fixedRate = 10 * 1000)
     public void testToken() {
         Thread thread = Thread.currentThread();
         log.info("线程id: {}, 线程名称: {}", thread.getId(), thread.getName());

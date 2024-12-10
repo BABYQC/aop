@@ -1,6 +1,7 @@
 package com.example.aop.demo;
 
 import lombok.Data;
+import org.springframework.beans.factory.FactoryBean;
 
 /**
  * @author chang qi

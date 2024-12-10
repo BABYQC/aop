@@ -3,6 +3,7 @@ package com.example.aop.service;
 import com.example.aop.entity.CloudFile;
 import com.example.aop.mapper.CloudFileMapper;
 import jakarta.annotation.Resource;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
