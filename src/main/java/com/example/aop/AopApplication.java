@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class AopApplication {
 
 	public static void main(String[] args) {
-		// AnnotationConfigServletWebServerApplicationContext
+
 		ConfigurableApplicationContext context = SpringApplication.run(AopApplication.class, args);
 		Config redisConfig = context.getBean("redisConfig", Config.class);
 		System.out.println();
