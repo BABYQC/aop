@@ -8,6 +8,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import java.util.*;
+
 @MapperScan("com.example.aop.mapper")
 @EnableScheduling
 @EnableAsync
@@ -17,7 +19,8 @@ public class AopApplication {
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext context = SpringApplication.run(AopApplication.class, args);
-		Config redisConfig = context.getBean("redisConfig", Config.class);
+//		Config redisConfig = context.getBean("redisConfig", Config.class);
+		List<Integer> list = new ArrayList<>();
 		System.out.println();
 	}
 
