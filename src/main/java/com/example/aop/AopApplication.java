@@ -23,6 +23,9 @@ public class AopApplication {
 		ConfigurableApplicationContext context = SpringApplication.run(AopApplication.class, args);
 //		Config redisConfig = context.getBean("redisConfig", Config.class);
 		List<Integer> list = new ArrayList<>();
+		TreeSet<String> treeSet = new TreeSet<>();
+//		treeSet.last()
+		ArrayDeque
 		System.out.println();
 	}
 

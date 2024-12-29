@@ -1,5 +1,6 @@
 package com.example.aop.schedule;
 
+import jdk.internal.misc.Unsafe;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -17,7 +18,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ReentrantLockTest {
     private final ReentrantLock valveSyncPushLock = new ReentrantLock(true);
     @Async
-    @Scheduled(cron = "0/5 * 10-23 * * ?")
+    @Scheduled(cron = "0/5 * * * * ?")
     public void schedulePushValveAutoChargeToTransfer() {
         Thread curThread = Thread.currentThread();
         try {
@@ -25,7 +26,7 @@ public class ReentrantLockTest {
             if (valveSyncPushLock.tryLock(10, TimeUnit.SECONDS)) {
                 try {
                     log.info("当前线程:id:{} - name:{}; 获取了锁valveSyncPushLock", curThread.getId(), curThread.getName());
-                    System.out.println("do something......");
+                    System.out.println("do th");
                     Thread.sleep(1000 * 30);
                 } finally {
                     valveSyncPushLock.unlock();
