@@ -25,7 +25,6 @@ public class AopApplication {
 		List<Integer> list = new ArrayList<>();
 		TreeSet<String> treeSet = new TreeSet<>();
 //		treeSet.last()
-		ArrayDeque
 		System.out.println();
 	}
 
