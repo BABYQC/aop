@@ -2,26 +2,21 @@ package com.example.aop.demo;
 
 import org.springframework.aop.framework.ProxyFactory;
 
-import java.lang.reflect.Proxy;
-
 /**
  * @author chang qi
  * @date 2024/10/29
  */
 public class Main {
-    public static void main(String[] args) {
-        Agent agent = new Agent();
+    public static void main(String[] args) throws InterruptedException {
+        IFoo foo = new FooImpl();
         ProxyFactory proxyFactory = new ProxyFactory();
-        proxyFactory.addAdvice(new AgentDecorator());
-        proxyFactory.setTarget(agent);
-
-        proxyFactory.addAdvisors();
-
-        Agent proxy = (Agent) proxyFactory.getProxy();
-
-        agent.speak();
-        System.out.println("--------------------------");
-        proxy.speak();
+        proxyFactory.setTarget(foo);
+        proxyFactory.setInterfaces(IFoo.class);
+        proxyFactory.addAdvice(new MyAdvice());
+        proxyFactory.setProxyTargetClass(false);
+        IFoo proxiedFoo = (IFoo) proxyFactory.getProxy();
+        proxiedFoo.doSomething();
+        Thread.sleep(60 * 60 * 1000L);
 
     }
 }

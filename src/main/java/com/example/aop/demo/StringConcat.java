@@ -6,8 +6,10 @@ package com.example.aop.demo;
  */
 public class StringConcat {
     public static void main(String[] args) {
-        String str = "abc" + "def";
-        StringBuilder sb = new StringBuilder();
+        String str = "abc";
+        for (int i = 0; i < 10; i++) {
+            str += i;
+        }
         System.out.println(str);
     }
 }

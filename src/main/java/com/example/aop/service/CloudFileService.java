@@ -5,6 +5,7 @@ import com.example.aop.mapper.CloudFileMapper;
 import jakarta.annotation.Resource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class CloudFileService {
         return cloudFileMapper.selectCloudFileById(id);
     }
 
+    @Transactional
     public int insertCloudFile(CloudFile cloudFile) {
         return cloudFileMapper.insertCloudFile(cloudFile);
     }
