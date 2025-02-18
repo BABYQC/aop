@@ -96,8 +96,18 @@
 			<artifactId>hutool-all</artifactId>
 			<version>5.7.19</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>5.3.23</version>
+		</dependency>
 
-	</dependencies>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.7</version> <!-- 请使用最新稳定版本 -->
+		</dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
