@@ -6,7 +6,7 @@ package com.example.aop.pattern;
  */
 public class Singleton {
     private Singleton(){ }
-    private static class SingletonHolder {
+    private static final class SingletonHolder {
         public static final Singleton INSTANCE = new Singleton();
     }
 
