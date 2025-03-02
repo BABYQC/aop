@@ -3,6 +3,7 @@ package com.example.aop.service;
 import com.example.aop.vo.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author chang qi
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements IUserService{
     @Override
+    @Transactional
     public void addUser(UserInfo userInfo) {
         log.info("do add user...");
     }
