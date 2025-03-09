@@ -1,21 +1,24 @@
-//package com.example.aop.demo;
-//
+package com.example.aop.demo;
+
 //import jdk.internal.misc.Unsafe;
-//import lombok.extern.slf4j.Slf4j;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.ReentrantLock;
 //
-//import java.util.concurrent.ArrayBlockingQueue;
-//import java.util.concurrent.ThreadPoolExecutor;
-//import java.util.concurrent.TimeUnit;
-//import java.util.concurrent.locks.AbstractQueuedSynchronizer;
-//import java.util.concurrent.locks.ReentrantLock;
-//
-///**
-// * @author chang qi
-// * @date 2024/12/28
-// */
-//@Slf4j
-//public class LockDemo {
-//    private final ReentrantLock lock = new ReentrantLock();
+/**
+ * @author chang qi
+ * @date 2024/12/28
+ */
+@Slf4j
+public class LockDemo {
+    private final ReentrantLock lock = new ReentrantLock();
 //    // Unsafe
 //    private static final Unsafe U = Unsafe.getUnsafe();
 //
@@ -57,29 +60,33 @@
 //    // Concrete classes tagged by type
 //    static final class ExclusiveNode extends Node { }
 //
-//    private static final ThreadPoolExecutor executors = new ThreadPoolExecutor(5, 5, 10, TimeUnit.MINUTES, new ArrayBlockingQueue<>(100));
-//    public static void main(String[] args) {
-//        LockDemo aLockDemo = new LockDemo();
-//        LockDemo bLockDemo = new LockDemo();
-//        executors.execute(aLockDemo::lockDemo);
-////        executors.execute(bLockDemo::lockDemo);
-//        executors.execute(aLockDemo::lockDemo);
-//        System.out.println();
-//    }
-//
-//    private void lockDemo() {
-//        Thread curThread = Thread.currentThread();
-//        System.out.printf("线程:id:[%s] - name:[%s] 开始尝试获取锁%n", curThread.getId(), curThread.getName());
-//        lock.lock();
-//        try {
-//            System.out.printf("线程:id:[%s] - name:[%s] 获取到锁！%n", curThread.getId(), curThread.getName());
-//            Thread.sleep(1000 * 60);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        } finally {
-//            lock.unlock();
-//            System.out.printf("线程:id:[%s] - name:[%s] 释放了锁！%n", curThread.getId(), curThread.getName());
-//        }
-//    }
-//
-//}
+    private static final ThreadPoolExecutor executors = new ThreadPoolExecutor(5, 5, 10, TimeUnit.MINUTES, new ArrayBlockingQueue<>(100));
+    public static void main(String[] args) {
+
+        AtomicInteger state = new AtomicInteger(1);
+        state.compareAndSet(1, 2);
+        LockDemo aLockDemo = new LockDemo();
+        LockDemo bLockDemo = new LockDemo();
+        executors.execute(aLockDemo::lockDemo);
+//        executors.execute(bLockDemo::lockDemo);
+        executors.execute(aLockDemo::lockDemo);
+        System.out.println();
+        Executors.newCachedThreadPool()
+    }
+
+    private void lockDemo() {
+        Thread curThread = Thread.currentThread();
+        System.out.printf("线程:id:[%s] - name:[%s] 开始尝试获取锁%n", curThread.getId(), curThread.getName());
+        lock.lock();
+        try {
+            System.out.printf("线程:id:[%s] - name:[%s] 获取到锁！%n", curThread.getId(), curThread.getName());
+            Thread.sleep(1000 * 60);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            lock.unlock();
+            System.out.printf("线程:id:[%s] - name:[%s] 释放了锁！%n", curThread.getId(), curThread.getName());
+        }
+    }
+
+}

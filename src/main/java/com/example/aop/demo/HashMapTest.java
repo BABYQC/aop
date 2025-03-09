@@ -1,6 +1,7 @@
 package com.example.aop.demo;
 
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Author: chang qi
@@ -9,10 +10,10 @@ import java.util.HashMap;
 public class HashMapTest {
     public static void main(String[] args) {
 //        HashMap.
-        HashMap<String, String> map = new HashMap<>();
-
-//        short s = 1;
-//        s = s + 1;
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("1", 1);
+        map.put("1", 2);
+//        ConcurrentHashMap<>
     }
 
 }
